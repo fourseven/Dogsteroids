@@ -61,8 +61,7 @@ game.Helloworld = cc.Layer.extend(
 
 
   addAsShipSprite: (size) ->
-    asShipSprite = cc.MenuItemImage.create "res/Title/AsShip.png", "res/Title/AsShip.png", @onNewAsShip, @
-    asShipSprite.setAnchorPoint cc.p(0.5, 0.5)
+    asShipSprite = cc.MenuItemImage.create s_Title_AsShip, s_Title_AsShip, @onNewAsShip
     asShipSprite.setScale 0.5
     asShipSprite.setVisible(false)
     @addDelayToObject(asShipSprite)
@@ -70,7 +69,7 @@ game.Helloworld = cc.Layer.extend(
 
 
   addAsDirectorSprite: (size) ->
-    asDirectorSprite = cc.MenuItemImage.create "res/Title/AsDirector.png", "res/Title/AsDirector.png", ->
+    asDirectorSprite = cc.MenuItemImage.create s_Title_AsDirector, s_Title_AsDirector, ->
       console.log("new game")
     asDirectorSprite.setAnchorPoint cc.p(0.5, 0.5)
     asDirectorSprite.setScale 0.5
@@ -80,7 +79,7 @@ game.Helloworld = cc.Layer.extend(
 
   addMenuButton: (size) ->
     menu = cc.Menu.create(@addAsShipSprite(size), @addAsDirectorSprite(size))
-    menu.alignItemsVerticallyWithPadding(100)
+    menu.alignItemsVerticallyWithPadding(10)
     menu.setPosition(size.width / 2, size.height / 2 - 160)
     @addChild menu, 5, 2
 
@@ -110,35 +109,7 @@ game.Helloworld = cc.Layer.extend(
     @addMenuButton(size)
 
     @setTouchEnabled true
-    @adjustSizeForWindow()
-    lazyLayer.adjustSizeForCanvas()
-    window.addEventListener "resize", (event) ->
-      selfPointer.adjustSizeForWindow()
     true
-
-  adjustSizeForWindow: ->
-    margin = document.documentElement.clientWidth - document.body.clientWidth
-    if document.documentElement.clientWidth < cc.originalCanvasSize.width
-      cc.canvas.width = cc.originalCanvasSize.width
-    else
-      cc.canvas.width = document.documentElement.clientWidth - margin
-    if document.documentElement.clientHeight < cc.originalCanvasSize.height
-      cc.canvas.height = cc.originalCanvasSize.height
-    else
-      cc.canvas.height = document.documentElement.clientHeight - margin
-    xScale = cc.canvas.width / cc.originalCanvasSize.width
-    yScale = cc.canvas.height / cc.originalCanvasSize.height
-    xScale = yScale  if xScale > yScale
-    cc.canvas.width = cc.originalCanvasSize.width * xScale
-    cc.canvas.height = cc.originalCanvasSize.height * xScale
-    parentDiv = document.getElementById("Cocos2dGameContainer")
-    if parentDiv
-      parentDiv.style.width = cc.canvas.width + "px"
-      parentDiv.style.height = cc.canvas.height + "px"
-    cc.renderContext.translate 0, cc.canvas.height
-    cc.renderContext.scale xScale, xScale
-    cc.Director.getInstance().setContentScaleFactor xScale
-
 
   onNewAsShip: (sender) ->
     console.log("new game")

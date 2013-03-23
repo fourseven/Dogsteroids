@@ -319,6 +319,15 @@ cc.c4FFromccc4B = function (c) {
 };
 
 /**
+ * Returns a cc.Color4B from a cc.Color4F.
+ * @param {cc.Color4F} c
+ * @return {cc.Color4B}
+ */
+cc.c4BFromccc4F = function(c){
+    return new cc.Color4B(0|(c.r * 255), 0|(c.g * 255),0|(c.b * 255),0|(c.a * 255));
+};
+
+/**
  * returns YES if both cc.Color4F are equal. Otherwise it returns NO.
  * @param {cc.Color4F} a color1
  * @param {cc.Color4F} b color2
@@ -512,6 +521,20 @@ cc.V3F_C4B_T2F = function (vertices1, colors1, texCoords1) {
 };
 
 /**
+ * A Triangle of ccV2F_C4B_T2F
+ * @Class
+ * @Construct
+ * @param {cc.V2F_C4B_T2F} a
+ * @param {cc.V2F_C4B_T2F} b
+ * @param {cc.V2F_C4B_T2F} c
+ */
+cc.V2F_C4B_T2F_Triangle = function(a, b, c){
+    this.a = a || new cc.V2F_C4B_T2F();
+    this.b = b || new cc.V2F_C4B_T2F();
+    this.c = c || new cc.V2F_C4B_T2F();
+};
+
+/**
  * 4 ccVertex2FTex2FColor4B Quad
  * @Class
  * @Construct
@@ -570,6 +593,36 @@ cc.V3F_C4B_T2F_QuadZero = function () {
         new cc.V3F_C4B_T2F(new cc.Vertex3F(0, 0, 0), new cc.Color4B(0, 0, 0, 255), new cc.Tex2F(0, 0)));
 };
 
+cc.V3F_C4B_T2F_QuadCopy = function(sourceQuad){
+    if(!sourceQuad)
+        return  cc.V3F_C4B_T2F_QuadZero();
+
+    return new cc.V3F_C4B_T2F_Quad(
+        new cc.V3F_C4B_T2F(new cc.Vertex3F(sourceQuad.tl.vertices.x, sourceQuad.tl.vertices.y, sourceQuad.tl.vertices.z),
+            new cc.Color4B(sourceQuad.tl.colors.r, sourceQuad.tl.colors.g, sourceQuad.tl.colors.b,sourceQuad.tl.colors.a),
+            new cc.Tex2F(sourceQuad.tl.texCoords.u, sourceQuad.tl.texCoords.v)),
+        new cc.V3F_C4B_T2F(new cc.Vertex3F(sourceQuad.bl.vertices.x, sourceQuad.bl.vertices.y, sourceQuad.bl.vertices.z),
+            new cc.Color4B(sourceQuad.bl.colors.r, sourceQuad.bl.colors.g, sourceQuad.bl.colors.b,sourceQuad.bl.colors.a),
+            new cc.Tex2F(sourceQuad.bl.texCoords.u, sourceQuad.bl.texCoords.v)),
+        new cc.V3F_C4B_T2F(new cc.Vertex3F(sourceQuad.tr.vertices.x, sourceQuad.tr.vertices.y, sourceQuad.tr.vertices.z),
+            new cc.Color4B(sourceQuad.tr.colors.r, sourceQuad.tr.colors.g, sourceQuad.tr.colors.b,sourceQuad.tr.colors.a),
+            new cc.Tex2F(sourceQuad.tr.texCoords.u, sourceQuad.tr.texCoords.v)),
+        new cc.V3F_C4B_T2F(new cc.Vertex3F(sourceQuad.br.vertices.x, sourceQuad.br.vertices.y, sourceQuad.br.vertices.z),
+            new cc.Color4B(sourceQuad.br.colors.r, sourceQuad.br.colors.g, sourceQuad.br.colors.b,sourceQuad.br.colors.a),
+            new cc.Tex2F(sourceQuad.br.texCoords.u, sourceQuad.br.texCoords.v)));
+};
+
+cc.V3F_C4B_T2F_QuadsCopy = function(sourceQuads){
+    if(!sourceQuads)
+        return  [];
+
+    var retArr = [];
+    for(var i = 0; i< sourceQuads.length;i++){
+        retArr.push(cc.V3F_C4B_T2F_QuadCopy(sourceQuads[i]));
+    }
+    return retArr;
+};
+
 /**
  * 4 ccVertex2FTex2FColor4F Quad
  * @Class
@@ -599,6 +652,9 @@ cc.BlendFunc = function (src1, dst1) {
     this.dst = dst1;
 };
 
+cc.BlendFuncDisable = function(){
+    return new cc.BlendFunc(gl.ONE,gl.ZERO);
+};
 
 /**
  * convert Color3B to a string of color for style.
@@ -671,3 +727,81 @@ cc.VERTICAL_TEXT_ALIGNMENT_CENTER = 1;
  * @type Number
  */
 cc.VERTICAL_TEXT_ALIGNMENT_BOTTOM = 2;
+
+cc._Dictionary = cc.Class.extend({
+    _keyMapTb:null,
+    _valueMapTb:null,
+    __currId:0,
+
+    ctor:function () {
+        this._keyMapTb = {};
+        this._valueMapTb = {};
+        this.__currId = 2 << (0 | (Math.random() * 10));
+    },
+
+    __getKey:function () {
+        this.__currId++;
+        return "key_" + this.__currId;
+    },
+
+    setObject:function (value, key) {
+        if (key == null)
+            return;
+
+        var keyId = this.__getKey();
+        this._keyMapTb[keyId] = key;
+        this._valueMapTb[keyId] = value;
+    },
+
+    objectForKey:function (key) {
+        if (key == null)
+            return null;
+
+        for (var keyId in this._keyMapTb) {
+            if (this._keyMapTb[keyId] === key)
+                return this._valueMapTb[keyId];
+        }
+        return null;
+    },
+
+    valueForKey:function (key) {
+        return this.objectForKey(key);
+    },
+
+    removeObjectForKey:function (key) {
+        if (key == null)
+            return;
+
+        for (var keyId in this._keyMapTb) {
+            if (this._keyMapTb[keyId] === key) {
+                delete this._valueMapTb[keyId];
+                delete this._keyMapTb[keyId];
+                return;
+            }
+        }
+    },
+
+    removeObjectsForKeys:function (keys) {
+        if (keys == null)
+            return;
+
+        for (var i = 0; i < keys.length; i++)
+            this.removeObjectForKey(keys[i]);
+    },
+
+    allKeys:function () {
+        var keyArr = [];
+        for (var key in this._keyMapTb)
+            keyArr.push(this._keyMapTb[key]);
+        return keyArr;
+    },
+
+    removeAllObjects:function () {
+        this._keyMapTb = {};
+        this._valueMapTb = {};
+    },
+
+    count:function(){
+        return this.allKeys().length;
+    }
+});

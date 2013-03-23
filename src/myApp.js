@@ -66,8 +66,7 @@
     },
     addAsShipSprite: function(size) {
       var asShipSprite;
-      asShipSprite = cc.MenuItemImage.create("res/Title/AsShip.png", "res/Title/AsShip.png", this.onNewAsShip, this);
-      asShipSprite.setAnchorPoint(cc.p(0.5, 0.5));
+      asShipSprite = cc.MenuItemImage.create(s_Title_AsShip, s_Title_AsShip, this.onNewAsShip);
       asShipSprite.setScale(0.5);
       asShipSprite.setVisible(false);
       this.addDelayToObject(asShipSprite);
@@ -75,7 +74,7 @@
     },
     addAsDirectorSprite: function(size) {
       var asDirectorSprite;
-      asDirectorSprite = cc.MenuItemImage.create("res/Title/AsDirector.png", "res/Title/AsDirector.png", function() {
+      asDirectorSprite = cc.MenuItemImage.create(s_Title_AsDirector, s_Title_AsDirector, function() {
         return console.log("new game");
       });
       asDirectorSprite.setAnchorPoint(cc.p(0.5, 0.5));
@@ -87,7 +86,7 @@
     addMenuButton: function(size) {
       var menu;
       menu = cc.Menu.create(this.addAsShipSprite(size), this.addAsDirectorSprite(size));
-      menu.alignItemsVerticallyWithPadding(100);
+      menu.alignItemsVerticallyWithPadding(10);
       menu.setPosition(size.width / 2, size.height / 2 - 160);
       return this.addChild(menu, 5, 2);
     },
@@ -105,41 +104,7 @@
       this.addTitleSprite(size);
       this.addMenuButton(size);
       this.setTouchEnabled(true);
-      this.adjustSizeForWindow();
-      lazyLayer.adjustSizeForCanvas();
-      window.addEventListener("resize", function(event) {
-        return selfPointer.adjustSizeForWindow();
-      });
       return true;
-    },
-    adjustSizeForWindow: function() {
-      var margin, parentDiv, xScale, yScale;
-      margin = document.documentElement.clientWidth - document.body.clientWidth;
-      if (document.documentElement.clientWidth < cc.originalCanvasSize.width) {
-        cc.canvas.width = cc.originalCanvasSize.width;
-      } else {
-        cc.canvas.width = document.documentElement.clientWidth - margin;
-      }
-      if (document.documentElement.clientHeight < cc.originalCanvasSize.height) {
-        cc.canvas.height = cc.originalCanvasSize.height;
-      } else {
-        cc.canvas.height = document.documentElement.clientHeight - margin;
-      }
-      xScale = cc.canvas.width / cc.originalCanvasSize.width;
-      yScale = cc.canvas.height / cc.originalCanvasSize.height;
-      if (xScale > yScale) {
-        xScale = yScale;
-      }
-      cc.canvas.width = cc.originalCanvasSize.width * xScale;
-      cc.canvas.height = cc.originalCanvasSize.height * xScale;
-      parentDiv = document.getElementById("Cocos2dGameContainer");
-      if (parentDiv) {
-        parentDiv.style.width = cc.canvas.width + "px";
-        parentDiv.style.height = cc.canvas.height + "px";
-      }
-      cc.renderContext.translate(0, cc.canvas.height);
-      cc.renderContext.scale(xScale, xScale);
-      return cc.Director.getInstance().setContentScaleFactor(xScale);
     },
     onNewAsShip: function(sender) {
       return console.log("new game");

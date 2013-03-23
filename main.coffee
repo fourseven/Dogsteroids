@@ -33,13 +33,7 @@ cocos2dApp = cc.Application.extend(
     cc.COCOS2D_DEBUG = @config["COCOS2D_DEBUG"]
     cc.initDebugSetting()
     cc.setup @config["tag"]
-    cc.Loader.getInstance().onloading = ->
-      cc.LoaderScene.getInstance().draw()
-
-    cc.Loader.getInstance().onload = ->
-      cc.AppController.shareAppController().didFinishLaunchingWithOptions()
-
-    cc.Loader.getInstance().preload g_ressources
+    cc.AppController.shareAppController().didFinishLaunchingWithOptions()
 
   applicationDidFinishLaunching: ->
 
@@ -47,7 +41,7 @@ cocos2dApp = cc.Application.extend(
     director = cc.Director.getInstance()
 
     # enable High Resource Mode(2x, such as iphone4) and maintains low resource on other devices.
-    #     director->enableRetinaDisplay(true);
+    #director.enableRetinaDisplay(true);
 
     # turn on display FPS
     director.setDisplayStats @config["showFPS"]
@@ -55,10 +49,10 @@ cocos2dApp = cc.Application.extend(
     # set FPS. the default value is 1.0/60 if you don't call this
     director.setAnimationInterval 1.0 / @config["frameRate"]
 
-    # create a scene. it's an autorelease object
-
-    # run
-    director.runWithScene new @startScene()
+    #load resources
+    cc.Loader.preload g_ressources, (->
+      cc.Director.getInstance().replaceScene new @startScene()
+    ), this
     true
 )
 myApp = new cocos2dApp(game.HelloWorldScene)
