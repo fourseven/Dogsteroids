@@ -55,4 +55,4 @@ cocos2dApp = cc.Application.extend(
     ), this
     true
 )
-myApp = new cocos2dApp(game.HelloWorldScene)
+myApp = new cocos2dApp(game.IntroScreenScene)
