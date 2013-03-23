@@ -50,10 +50,15 @@ game.Helloworld = cc.Layer.extend(
       object.setVisible(true)
     , 1.0
 
+  addBackground: (size) ->
+    @backgroundSprite = cc.Sprite.create(s_Splash)
+    @backgroundSprite.setPosition cc.p(size.width / 2, size.height / 2)
+    @backgroundSprite.setScale 0.5
+    @addChild @backgroundSprite
 
   addTitleSprite: (size)->
     # Title sprite
-    @titleSprite = cc.Sprite.create("res/Title/TitleText.png")
+    @titleSprite = cc.Sprite.create(s_Title_TitleText)
     @titleSprite.setPosition cc.p(size.width / 2, 0)
     @titleSprite.setScale 0.5
     @addChild @titleSprite, 10
@@ -69,8 +74,7 @@ game.Helloworld = cc.Layer.extend(
 
 
   addAsDirectorSprite: (size) ->
-    asDirectorSprite = cc.MenuItemImage.create s_Title_AsDirector, s_Title_AsDirector, ->
-      console.log("new game")
+    asDirectorSprite = cc.MenuItemImage.create s_Title_AsDirector, s_Title_AsDirector, @onNewAsDirector
     asDirectorSprite.setAnchorPoint cc.p(0.5, 0.5)
     asDirectorSprite.setScale 0.5
     asDirectorSprite.setVisible(false)
@@ -94,10 +98,7 @@ game.Helloworld = cc.Layer.extend(
     size = cc.Director.getInstance().getWinSize()
 
     # add splash screen background
-    @backgroundSprite = cc.Sprite.create("res/Splash.jpg")
-    @backgroundSprite.setPosition cc.p(size.width / 2, size.height / 2)
-    @backgroundSprite.setScale 0.5
-    @addChild @backgroundSprite
+    @addBackground(size)
 
     lazyLayer = new cc.LazyLayer()
     @addChild lazyLayer, 2
@@ -112,7 +113,10 @@ game.Helloworld = cc.Layer.extend(
     true
 
   onNewAsShip: (sender) ->
-    console.log("new game")
+    console.log("new ship game")
+
+  onNewAsDirector: (sender) ->
+    console.log("new director game")
 
   # a selector callback
   menuCloseCallback: (sender) ->

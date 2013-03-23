@@ -57,8 +57,14 @@
         return object.setVisible(true);
       }, 1.0);
     },
+    addBackground: function(size) {
+      this.backgroundSprite = cc.Sprite.create(s_Splash);
+      this.backgroundSprite.setPosition(cc.p(size.width / 2, size.height / 2));
+      this.backgroundSprite.setScale(0.5);
+      return this.addChild(this.backgroundSprite);
+    },
     addTitleSprite: function(size) {
-      this.titleSprite = cc.Sprite.create("res/Title/TitleText.png");
+      this.titleSprite = cc.Sprite.create(s_Title_TitleText);
       this.titleSprite.setPosition(cc.p(size.width / 2, 0));
       this.titleSprite.setScale(0.5);
       this.addChild(this.titleSprite, 10);
@@ -74,9 +80,7 @@
     },
     addAsDirectorSprite: function(size) {
       var asDirectorSprite;
-      asDirectorSprite = cc.MenuItemImage.create(s_Title_AsDirector, s_Title_AsDirector, function() {
-        return console.log("new game");
-      });
+      asDirectorSprite = cc.MenuItemImage.create(s_Title_AsDirector, s_Title_AsDirector, this.onNewAsDirector);
       asDirectorSprite.setAnchorPoint(cc.p(0.5, 0.5));
       asDirectorSprite.setScale(0.5);
       asDirectorSprite.setVisible(false);
@@ -95,10 +99,7 @@
       selfPointer = this;
       this._super();
       size = cc.Director.getInstance().getWinSize();
-      this.backgroundSprite = cc.Sprite.create("res/Splash.jpg");
-      this.backgroundSprite.setPosition(cc.p(size.width / 2, size.height / 2));
-      this.backgroundSprite.setScale(0.5);
-      this.addChild(this.backgroundSprite);
+      this.addBackground(size);
       lazyLayer = new cc.LazyLayer();
       this.addChild(lazyLayer, 2);
       this.addTitleSprite(size);
@@ -107,7 +108,10 @@
       return true;
     },
     onNewAsShip: function(sender) {
-      return console.log("new game");
+      return console.log("new ship game");
+    },
+    onNewAsDirector: function(sender) {
+      return console.log("new director game");
     },
     menuCloseCallback: function(sender) {
       return cc.Director.getInstance().end();
