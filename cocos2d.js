@@ -39,7 +39,8 @@
         appFiles:[
             'src/resource.js',
             'src/myApp.js',
-            'src/screens/intro_screen.js'
+            'src/screens/intro_screen.js',
+            'src/screens/ship_main_screen.js'
             //add your own files in order here
         ]
     };

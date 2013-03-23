@@ -71,6 +71,9 @@ game.IntroScreen = cc.Layer.extend(
 
   onNewAsShip: (sender) ->
     console.log("new ship game")
+    scene = cc.Scene.create()
+    scene.addChild(new game.ShipMainScreen())
+    cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, scene))
 
   onNewAsDirector: (sender) ->
     console.log("new director game")
