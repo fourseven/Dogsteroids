@@ -40,13 +40,10 @@ game.CircleSprite = cc.Sprite.extend(
     @_radians -= 6
 )
 
-#this._addDirtyRegionToDirector(this.getBoundingBoxToWorld());
 game.Helloworld = cc.Layer.extend(
   isMouseDown: false
   helloImg: null
   helloLabel: null
-  circle: null
-  sprite: null
 
   addDelayToObject: (object) ->
     this.scheduleOnce ->
@@ -63,37 +60,29 @@ game.Helloworld = cc.Layer.extend(
     @titleSprite.runAction cc.MoveBy.create(0.8, cc.p(0, size.height - 210))
 
 
-  addAsShipSprite: (size, lazyLayer = @) ->
-    @asShipSprite = cc.MenuItemImage.create("res/Title/AsShip.png", "res/Title/AsShip.png", ->
-      console.log("new game")
-    , this)
-    @asShipSprite.setPosition cc.p(size.width / 4, size.height - 440)
-    @asShipSprite.setScale 0.5
-    @asShipSprite.setVisible(false)
-    lazyLayer.addChild @asShipSprite
-    @asShipSprite
+  addAsShipSprite: (size) ->
+    asShipSprite = cc.MenuItemImage.create "res/Title/AsShip.png", "res/Title/AsShip.png", @onNewAsShip, @
+    asShipSprite.setAnchorPoint cc.p(0.5, 0.5)
+    asShipSprite.setScale 0.5
+    asShipSprite.setVisible(false)
+    @addDelayToObject(asShipSprite)
+    asShipSprite
 
 
-  addAsDirectorSprite: (size, lazyLayer = @) ->
-    @asDirectorSprite = cc.MenuItemImage.create("res/Title/AsDirector.png", "res/Title/AsDirector.png", ->
+  addAsDirectorSprite: (size) ->
+    asDirectorSprite = cc.MenuItemImage.create "res/Title/AsDirector.png", "res/Title/AsDirector.png", ->
       console.log("new game")
-    , this)
-    @asDirectorSprite.setPosition cc.p((size.width / 4) * 3, size.height - 440)
-    @asDirectorSprite.setScale 0.5
-    @asDirectorSprite.setVisible(false)
-    lazyLayer.addChild @asDirectorSprite
-    @asDirectorSprite
+    asDirectorSprite.setAnchorPoint cc.p(0.5, 0.5)
+    asDirectorSprite.setScale 0.5
+    asDirectorSprite.setVisible(false)
+    @addDelayToObject(asDirectorSprite)
+    asDirectorSprite
 
   addMenuButton: (size) ->
-    # add a "close" icon to exit the progress. it's an autorelease object
-    closeItem = cc.MenuItemImage.create("res/CloseNormal.png", "res/CloseSelected.png", ->
-      history.go -1
-    , this)
-    closeItem.setAnchorPoint cc.p(0.5, 0.5)
-    menu = cc.Menu.create(closeItem)
-    menu.setPosition cc.PointZero()
-    @addChild menu, 1
-    closeItem.setPosition cc.p(size.width - 20, 20)
+    menu = cc.Menu.create(@addAsShipSprite(size), @addAsDirectorSprite(size))
+    menu.alignItemsVerticallyWithPadding(100)
+    menu.setPosition(size.width / 2, size.height / 2 - 160)
+    @addChild menu, 5, 2
 
   init: ->
     selfPointer = this
@@ -102,35 +91,23 @@ game.Helloworld = cc.Layer.extend(
     # 1. super init first
     @_super()
 
-    #///////////////////////////
-    # 2. add a menu item with "X" image, which is clicked to quit the program
-    #    you may modify it.
     # ask director the window size
     size = cc.Director.getInstance().getWinSize()
 
-    # add "HelloWorld" splash screen"
-    backgroundLayer = new cc.LazyLayer()
-    @addChild backgroundLayer
+    # add splash screen background
     @backgroundSprite = cc.Sprite.create("res/Splash.jpg")
     @backgroundSprite.setPosition cc.p(size.width / 2, size.height / 2)
     @backgroundSprite.setScale 0.5
     @addChild @backgroundSprite
 
     lazyLayer = new cc.LazyLayer()
-    @addChild lazyLayer, 5
-
-    @addMenuButton(size)
+    @addChild lazyLayer, 2
 
     # Title sprite
     @addTitleSprite(size)
 
-
     # Other sprites
-    shipSprite = @addAsShipSprite(size)
-    directorSprite = @addAsDirectorSprite(size)
-
-    @addDelayToObject(shipSprite)
-    @addDelayToObject(directorSprite)
+    @addMenuButton(size)
 
     @setTouchEnabled true
     @adjustSizeForWindow()
@@ -162,6 +139,9 @@ game.Helloworld = cc.Layer.extend(
     cc.renderContext.scale xScale, xScale
     cc.Director.getInstance().setContentScaleFactor xScale
 
+
+  onNewAsShip: (sender) ->
+    console.log("new game")
 
   # a selector callback
   menuCloseCallback: (sender) ->

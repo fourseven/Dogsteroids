@@ -52,8 +52,6 @@
     isMouseDown: false,
     helloImg: null,
     helloLabel: null,
-    circle: null,
-    sprite: null,
     addDelayToObject: function(object) {
       return this.scheduleOnce(function() {
         return object.setVisible(true);
@@ -66,62 +64,46 @@
       this.addChild(this.titleSprite, 10);
       return this.titleSprite.runAction(cc.MoveBy.create(0.8, cc.p(0, size.height - 210)));
     },
-    addAsShipSprite: function(size, lazyLayer) {
-      if (lazyLayer == null) {
-        lazyLayer = this;
-      }
-      this.asShipSprite = cc.MenuItemImage.create("res/Title/AsShip.png", "res/Title/AsShip.png", function() {
-        return console.log("new game");
-      }, this);
-      this.asShipSprite.setPosition(cc.p(size.width / 4, size.height - 440));
-      this.asShipSprite.setScale(0.5);
-      this.asShipSprite.setVisible(false);
-      lazyLayer.addChild(this.asShipSprite);
-      return this.asShipSprite;
+    addAsShipSprite: function(size) {
+      var asShipSprite;
+      asShipSprite = cc.MenuItemImage.create("res/Title/AsShip.png", "res/Title/AsShip.png", this.onNewAsShip, this);
+      asShipSprite.setAnchorPoint(cc.p(0.5, 0.5));
+      asShipSprite.setScale(0.5);
+      asShipSprite.setVisible(false);
+      this.addDelayToObject(asShipSprite);
+      return asShipSprite;
     },
-    addAsDirectorSprite: function(size, lazyLayer) {
-      if (lazyLayer == null) {
-        lazyLayer = this;
-      }
-      this.asDirectorSprite = cc.MenuItemImage.create("res/Title/AsDirector.png", "res/Title/AsDirector.png", function() {
+    addAsDirectorSprite: function(size) {
+      var asDirectorSprite;
+      asDirectorSprite = cc.MenuItemImage.create("res/Title/AsDirector.png", "res/Title/AsDirector.png", function() {
         return console.log("new game");
-      }, this);
-      this.asDirectorSprite.setPosition(cc.p((size.width / 4) * 3, size.height - 440));
-      this.asDirectorSprite.setScale(0.5);
-      this.asDirectorSprite.setVisible(false);
-      lazyLayer.addChild(this.asDirectorSprite);
-      return this.asDirectorSprite;
+      });
+      asDirectorSprite.setAnchorPoint(cc.p(0.5, 0.5));
+      asDirectorSprite.setScale(0.5);
+      asDirectorSprite.setVisible(false);
+      this.addDelayToObject(asDirectorSprite);
+      return asDirectorSprite;
     },
     addMenuButton: function(size) {
-      var closeItem, menu;
-      closeItem = cc.MenuItemImage.create("res/CloseNormal.png", "res/CloseSelected.png", function() {
-        return history.go(-1);
-      }, this);
-      closeItem.setAnchorPoint(cc.p(0.5, 0.5));
-      menu = cc.Menu.create(closeItem);
-      menu.setPosition(cc.PointZero());
-      this.addChild(menu, 1);
-      return closeItem.setPosition(cc.p(size.width - 20, 20));
+      var menu;
+      menu = cc.Menu.create(this.addAsShipSprite(size), this.addAsDirectorSprite(size));
+      menu.alignItemsVerticallyWithPadding(100);
+      menu.setPosition(size.width / 2, size.height / 2 - 160);
+      return this.addChild(menu, 5, 2);
     },
     init: function() {
-      var backgroundLayer, directorSprite, lazyLayer, selfPointer, shipSprite, size;
+      var lazyLayer, selfPointer, size;
       selfPointer = this;
       this._super();
       size = cc.Director.getInstance().getWinSize();
-      backgroundLayer = new cc.LazyLayer();
-      this.addChild(backgroundLayer);
       this.backgroundSprite = cc.Sprite.create("res/Splash.jpg");
       this.backgroundSprite.setPosition(cc.p(size.width / 2, size.height / 2));
       this.backgroundSprite.setScale(0.5);
       this.addChild(this.backgroundSprite);
       lazyLayer = new cc.LazyLayer();
-      this.addChild(lazyLayer, 5);
-      this.addMenuButton(size);
+      this.addChild(lazyLayer, 2);
       this.addTitleSprite(size);
-      shipSprite = this.addAsShipSprite(size);
-      directorSprite = this.addAsDirectorSprite(size);
-      this.addDelayToObject(shipSprite);
-      this.addDelayToObject(directorSprite);
+      this.addMenuButton(size);
       this.setTouchEnabled(true);
       this.adjustSizeForWindow();
       lazyLayer.adjustSizeForCanvas();
@@ -158,6 +140,9 @@
       cc.renderContext.translate(0, cc.canvas.height);
       cc.renderContext.scale(xScale, xScale);
       return cc.Director.getInstance().setContentScaleFactor(xScale);
+    },
+    onNewAsShip: function(sender) {
+      return console.log("new game");
     },
     menuCloseCallback: function(sender) {
       return cc.Director.getInstance().end();
