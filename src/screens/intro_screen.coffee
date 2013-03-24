@@ -1,5 +1,5 @@
 game = window.game || {}
-game.IntroScreen = cc.Layer.extend(
+game.IntroScreen = cc.Layer.extend
   isMouseDown: false
 
   addDelayToObject: (object) ->
@@ -44,7 +44,7 @@ game.IntroScreen = cc.Layer.extend(
     menu.setPosition(size.width / 2, size.height / 2 - 160)
     @addChild menu, 5, 2
 
-  init: ->
+  ctor: ->
     selfPointer = this
 
     #////////////////////////////
@@ -77,10 +77,9 @@ game.IntroScreen = cc.Layer.extend(
 
   onNewAsDirector: (sender) ->
     console.log("new director game")
-)
-game.IntroScreenScene = cc.Scene.extend(onEnter: ->
-  @_super()
-  layer = new game.IntroScreen()
-  layer.init()
-  @addChild layer
-)
+
+game.IntroScreenScene = cc.Scene.extend
+  onEnter: ->
+    @_super()
+    layer = new game.IntroScreen()
+    @addChild layer
