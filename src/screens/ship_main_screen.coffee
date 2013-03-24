@@ -1,6 +1,7 @@
 game.ShipMainScreen = cc.LayerColor.extend
   _shipSprite: null
   _bulletArray: []
+  _asteroidArray: []
   ctor: ->
     @_super new cc.Color4B(0, 0, 0, 255)
     @_shipSprite = new PlayerShip(this)
@@ -14,6 +15,10 @@ game.ShipMainScreen = cc.LayerColor.extend
 
   onEnter: ->
     @_super()
+    @schedule(@gameLogic, 3)
+
+  gameLogic: ->
+    @addAsteroid()
 
   update: (dt) ->
 
@@ -26,6 +31,11 @@ game.ShipMainScreen = cc.LayerColor.extend
 
   onKeyDown: (e) ->
     @_shipSprite.handleKey e
+
+  addAsteroid: () ->
+    asteroid = new Asteroid()
+    @addChild asteroid
+    @_asteroidArray.push asteroid
 
   fireBullet: (position, currentRotation) ->
     bullet = new PlayerShipBullet(@_shipSprite.getPosition(), @_shipSprite.getCurrentRotation())
@@ -124,9 +134,11 @@ PlayerShip = cc.Sprite.extend
 
 PlayerShipBullet = cc.Sprite.extend
   BULLET_VELOCITY: 12
+  LONGEST_LENGTH: 0
   _angle: null
   _position: null
-  LONGEST_LENGTH: 0
+  _rotation: (Math.round(Math.random()) == 0) ? 20 : -20
+  _currentRotation: Math.floor(Math.random() * (360 + 1))
   ctor: (sourcePosition, angle)->
     @_super()
     @initWithFile(s_Ship_Bullet)
@@ -136,10 +148,17 @@ PlayerShipBullet = cc.Sprite.extend
     @_angle = angle - 90
     @setPosition @_position
     @createMovement
+    @schedule () ->
+      @rotateBullet()
+      @setRotation @_currentRotation
 
   actionMove: () ->
     duration = @calculateDuration()
     cc.MoveTo.create(duration, @cacluateEndPosition())
+
+  rotateBullet: () ->
+    @_currentRotation = @_currentRotation + @_rotation
+    @_currentRotation = @_currentRotation % 360
 
   calculateDuration: () ->
     duration = @LONGEST_LENGTH / 60 / @BULLET_VELOCITY
@@ -149,4 +168,70 @@ PlayerShipBullet = cc.Sprite.extend
     finalX = @LONGEST_LENGTH * Math.sin(@_angle * Math.PI / 180) + @_position.x
     finalY = @LONGEST_LENGTH * Math.cos(@_angle * Math.PI / 180) + @_position.y
     new cc.Point(finalX, finalY)
+
+Asteroid = cc.Sprite.extend
+  VELOCITY: 4
+  _angle: 0
+  _position: null
+  _size: null
+  _rotation: 0
+  _currentRotation: 0
+  ctor: ()->
+    @_super()
+    @initWithFile(s_Asteroid_Large)
+    @_size = cc.Director.getInstance().getWinSize()
+    @_position = @makePosition()
+    @_rotation = Math.floor(Math.random() * (20 + 1)) - 10;
+    @_angle = Math.floor(Math.random() * (360 + 1))
+    @_currentRotation = Math.floor(Math.random() * (360 + 1))
+    @schedule () ->
+      @moveAsteroid()
+      @rotateAsteroid()
+      @setPosition @_position
+      @setRotation @_currentRotation
+
+
+  makePosition: () ->
+    side = Math.floor(Math.random() * (3))
+    if side == 0
+      return new cc.Point(@_size.width / 2, @_size.height + 10)
+    if side == 1
+      return new cc.Point(@_size.width + 10, @_size.height / 2)
+    if side == 2
+      return new cc.Point( @_size.width / 2, -10)
+    if side == 3
+      return new cc.Point(-10, @_size.height / 2)
+
+  moveAsteroid: () ->
+    xChange = @VELOCITY * Math.cos(@_angle * Math.PI / 180)
+    yChange = @VELOCITY * Math.sin(@_angle * Math.PI / 180)
+    @_position.x -= xChange
+    @_position.y += yChange
+    @sanitizeX()
+    @sanitizeY()
+
+    return
+
+  rotateAsteroid: () ->
+    @_currentRotation = @_currentRotation + @_rotation
+    @_currentRotation = @_currentRotation % 360
+
+  sanitizeX: () ->
+    maxX = @_size.width + @getBoundingBox().width/2
+    # RIGHT
+    if @_position.x > maxX
+      @_position.x = @_position.x % maxX
+    # LEFT
+    if @_position.x < -@getBoundingBox().width/2
+      @_position.x = maxX
+
+  sanitizeY: () ->
+    maxY = @_size.height + @getBoundingBox().height/2
+    # BOTTOM
+    if @_position.y > maxY
+      @_position.y = @_position.y % maxY
+    # TOP
+    if @_position.y < -@getBoundingBox().height/2
+      @_position.y = maxY
+
 
