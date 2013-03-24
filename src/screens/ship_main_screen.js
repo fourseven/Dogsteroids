@@ -35,7 +35,7 @@
       for (var i = 0; i < this._bulletArray.length; i++) {
         var bullet = this._bulletArray[i];
         var bulletRect = bullet.getBoundingBox();
-        if (cc.rectContainsRect(asteroidRect, bulletRect)) {
+        if (cc.rectContainsRect(bulletRect, asteroidRect)) {
             cc.log("collision!");
             cc.ArrayRemoveObject(this._bulletArray, bullet);
             bullet.removeFromParent();
@@ -44,8 +44,8 @@
         }
       }
       var scene;
-
-      if (cc.rectContainsRect(asteroidRect, this._shipSprite.getBoundingBox())) {
+      var intersection = cc.rectIntersection(asteroidRect, this._shipSprite.getBoundingBox());
+      if (intersection.size.width > 2 && intersection.size.height > 2) {
         this._asteroidArray = [];
         this._bulletArray = [];
         scene = game.GameOver.scene(false);

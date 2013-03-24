@@ -40,8 +40,8 @@ game.IntroScreen = cc.Layer.extend
 
   addMenuButton: (size) ->
     menu = cc.Menu.create(@addAsShipSprite(size), @addAsDirectorSprite(size))
-    menu.alignItemsVerticallyWithPadding(10)
-    menu.setPosition(size.width / 2, size.height / 2 - 160)
+    menu.alignItemsVerticallyWithPadding(40)
+    menu.setPosition(size.width / 2, size.height / 2 - 130)
     @addChild menu, 5, 2
 
   ctor: ->
