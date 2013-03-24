@@ -2,6 +2,8 @@
 (function() {
   var Asteroid, PlayerShip, PlayerShipBullet, _ref;
 
+  window.game = window.game || {};
+
   game.ShipMainScreen = cc.LayerColor.extend({
     _shipSprite: null,
     _bulletArray: [],
@@ -12,6 +14,8 @@
       this.setTouchEnabled(true);
       this.setKeyboardEnabled(true);
       this.setPosition(new cc.Point(0, 0));
+      this._bulletArray = [];
+      this._asteroidArray = [];
       this.addChild(this._shipSprite);
       this._shipSprite.scheduleUpdate();
       this.schedule(this.update);
@@ -24,7 +28,31 @@
     gameLogic: function() {
       return this.addAsteroid();
     },
-    update: function(dt) {},
+    update: function(dt) {
+      for (var j = 0; j < this._asteroidArray.length; j++) {
+      var asteroid = this._asteroidArray[j];
+      var asteroidRect = asteroid.getBoundingBox();
+      for (var i = 0; i < this._bulletArray.length; i++) {
+        var bullet = this._bulletArray[i];
+        var bulletRect = bullet.getBoundingBox();
+        if (cc.rectContainsRect(asteroidRect, bulletRect)) {
+            cc.log("collision!");
+            cc.ArrayRemoveObject(this._bulletArray, bullet);
+            bullet.removeFromParent();
+            cc.ArrayRemoveObject(this._asteroidArray, asteroid);
+            asteroid.removeFromParent();
+        }
+      }
+      var scene;
+
+      if (cc.rectContainsRect(asteroidRect, this._shipSprite.getBoundingBox())) {
+        this._asteroidArray = [];
+        this._bulletArray = [];
+        scene = game.GameOver.scene(false);
+        cc.Director.getInstance().replaceScene(scene);
+      }
+    };
+    },
     onTouchesEnded: function(pTouch, pEvent) {},
     onTouchesMoved: function(pTouch, pEvent) {
       return this._shipSprite.handleTouchMove(pTouch[0].getLocation());
@@ -43,6 +71,7 @@
       var bullet;
       bullet = new PlayerShipBullet(this._shipSprite.getPosition(), this._shipSprite.getCurrentRotation());
       this.addChild(bullet);
+      this._bulletArray.push(bullet);
       return bullet.runAction(bullet.actionMove(), function() {
         return cc.CallFunc.create(function(node) {
           cc.ArrayRemoveObject(this._bulletArray, node);
@@ -98,7 +127,6 @@
         this._currentVelocity -= 1;
       }
       if (e === cc.KEY.space) {
-        console.log("Space was pressed");
         this._scene.fireBullet();
       }
       if (this._currentVelocity > 10) {
