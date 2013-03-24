@@ -155,9 +155,9 @@
     },
     handleTouchMove: function(touchLocation) {
       var angle;
-      angle = Math.atan2(touchLocation.x - 300, touchLocation.y - 300);
+      angle = Math.atan2(touchLocation.x - this._position.x, touchLocation.y - this._position.y);
       angle = angle * (180 / Math.PI);
-      return this._currentRotation = angle;
+      return this._currentRotation = angle + 90;
     },
     moveShip: function() {
       var xChange, yChange;

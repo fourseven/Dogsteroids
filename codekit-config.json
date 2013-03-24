@@ -57,6 +57,17 @@
       "outputAbbreviatedPath" : "\/cocos2d\/label_nodes\/CCLabelAtlas-ck.js",
       "fileType" : 64
     },
+    "\/cocos2d\/cocoa\/CCNS.js" : {
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/cocos2d\/cocoa\/CCNS.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/cocos2d\/cocoa\/CCNS-ck.js",
+      "fileType" : 64
+    },
     "\/cocos2d\/physics_nodes\/CCPhysicsSprite.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
@@ -68,15 +79,15 @@
       "outputAbbreviatedPath" : "\/cocos2d\/physics_nodes\/CCPhysicsSprite-ck.js",
       "fileType" : 64
     },
-    "\/cocos2d\/cocoa\/CCNS.js" : {
+    "\/cocos2d\/actions\/CCActionEase.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/cocoa\/CCNS.js",
+      "inputAbbreviatedPath" : "\/cocos2d\/actions\/CCActionEase.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/cocoa\/CCNS-ck.js",
+      "outputAbbreviatedPath" : "\/cocos2d\/actions\/CCActionEase-ck.js",
       "fileType" : 64
     },
     "\/src\/screens\/game_over_screen.coffee" : {
@@ -90,17 +101,6 @@
       "outputAbbreviatedPath" : "\/src\/screens\/game_over_screen.js",
       "outputStyle" : 0,
       "fileType" : 32
-    },
-    "\/cocos2d\/actions\/CCActionEase.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/actions\/CCActionEase.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/actions\/CCActionEase-ck.js",
-      "fileType" : 64
     },
     "\/box2d\/box2d.js" : {
       "ignoreWasSetByUser" : 0,
@@ -212,17 +212,6 @@
       "outputAbbreviatedPath" : "\/cocos2d\/shaders\/ccShaders-ck.js",
       "fileType" : 64
     },
-    "\/cocos2d\/cocos2d_externs.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/cocos2d_externs.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/cocos2d_externs-ck.js",
-      "fileType" : 64
-    },
     "\/cocos2d\/support\/CCPointExtension.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
@@ -232,17 +221,6 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/cocos2d\/support\/CCPointExtension-ck.js",
-      "fileType" : 64
-    },
-    "\/cocos2d\/touch_dispatcher\/CCTouchDelegateProtocol.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/touch_dispatcher\/CCTouchDelegateProtocol.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/touch_dispatcher\/CCTouchDelegateProtocol-ck.js",
       "fileType" : 64
     },
     "\/cocos2d\/platform\/CCCommon.js" : {
@@ -256,17 +234,6 @@
       "outputAbbreviatedPath" : "\/cocos2d\/platform\/CCCommon-ck.js",
       "fileType" : 64
     },
-    "\/cocos2d\/platform\/CCFileUtils.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/platform\/CCFileUtils.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/platform\/CCFileUtils-ck.js",
-      "fileType" : 64
-    },
     "\/res\/Title\/TitleText.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -277,6 +244,39 @@
       "outputAbbreviatedPath" : "\/res\/Title\/TitleText.png",
       "initialSize" : 64080,
       "fileType" : 8192
+    },
+    "\/cocos2d\/touch_dispatcher\/CCTouchDelegateProtocol.js" : {
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/cocos2d\/touch_dispatcher\/CCTouchDelegateProtocol.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/cocos2d\/touch_dispatcher\/CCTouchDelegateProtocol-ck.js",
+      "fileType" : 64
+    },
+    "\/cocos2d\/effects\/CCGrabber.js" : {
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/cocos2d\/effects\/CCGrabber.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/cocos2d\/effects\/CCGrabber-ck.js",
+      "fileType" : 64
+    },
+    "\/cocos2d\/platform\/CCFileUtils.js" : {
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/cocos2d\/platform\/CCFileUtils.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/cocos2d\/platform\/CCFileUtils-ck.js",
+      "fileType" : 64
     },
     "\/Assets\/bub-bullet.png" : {
       "ignoreWasSetByUser" : 0,
@@ -322,15 +322,15 @@
       "initialSize" : 14647,
       "fileType" : 8192
     },
-    "\/cocos2d\/effects\/CCGrabber.js" : {
+    "\/cocos2d\/cocos2d_externs.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/effects\/CCGrabber.js",
+      "inputAbbreviatedPath" : "\/cocos2d\/cocos2d_externs.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/effects\/CCGrabber-ck.js",
+      "outputAbbreviatedPath" : "\/cocos2d\/cocos2d_externs-ck.js",
       "fileType" : 64
     },
     "\/cocos2d\/platform\/CCMacro.js" : {
@@ -421,15 +421,15 @@
       "outputAbbreviatedPath" : "\/cocos2d\/tileMap_parallax_nodes\/CCTMXXMLParser-ck.js",
       "fileType" : 64
     },
-    "\/cocos2d\/tileMap_parallax_nodes\/CCTileMapAtlas.js" : {
+    "\/cocos2d\/textures\/CCTextureCache.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/tileMap_parallax_nodes\/CCTileMapAtlas.js",
+      "inputAbbreviatedPath" : "\/cocos2d\/textures\/CCTextureCache.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/tileMap_parallax_nodes\/CCTileMapAtlas-ck.js",
+      "outputAbbreviatedPath" : "\/cocos2d\/textures\/CCTextureCache-ck.js",
       "fileType" : 64
     },
     "\/main.js" : {
@@ -454,15 +454,15 @@
       "outputAbbreviatedPath" : "\/cocos2d\/kazmath\/vec3-ck.js",
       "fileType" : 64
     },
-    "\/cocos2d\/textures\/CCTextureCache.js" : {
+    "\/cocos2d\/tileMap_parallax_nodes\/CCTileMapAtlas.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/textures\/CCTextureCache.js",
+      "inputAbbreviatedPath" : "\/cocos2d\/tileMap_parallax_nodes\/CCTileMapAtlas.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/textures\/CCTextureCache-ck.js",
+      "outputAbbreviatedPath" : "\/cocos2d\/tileMap_parallax_nodes\/CCTileMapAtlas-ck.js",
       "fileType" : 64
     },
     "\/cocos2d\/kazmath\/GL\/mat4stack.js" : {
@@ -564,17 +564,6 @@
       "initialSize" : 2592,
       "fileType" : 8192
     },
-    "\/cocos2d\/tileMap_parallax_nodes\/CCTMXObjectGroup.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/tileMap_parallax_nodes\/CCTMXObjectGroup.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/tileMap_parallax_nodes\/CCTMXObjectGroup-ck.js",
-      "fileType" : 64
-    },
     "\/cocos2d\/Draw_Nodes\/CCDrawNode.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
@@ -584,6 +573,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/cocos2d\/Draw_Nodes\/CCDrawNode-ck.js",
+      "fileType" : 64
+    },
+    "\/cocos2d\/tileMap_parallax_nodes\/CCTMXObjectGroup.js" : {
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/cocos2d\/tileMap_parallax_nodes\/CCTMXObjectGroup.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/cocos2d\/tileMap_parallax_nodes\/CCTMXObjectGroup-ck.js",
       "fileType" : 64
     },
     "\/cocos2d\/platform\/CCTypes.js" : {
@@ -686,26 +686,26 @@
       "outputAbbreviatedPath" : "\/cocos2d\/actions\/CCActionPageTurn3D-ck.js",
       "fileType" : 64
     },
-    "\/cocos2d\/particle_nodes\/CCParticleSystemQuad.js" : {
+    "\/cocos2d\/base_nodes\/CCAtlasNode.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/particle_nodes\/CCParticleSystemQuad.js",
+      "inputAbbreviatedPath" : "\/cocos2d\/base_nodes\/CCAtlasNode.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/particle_nodes\/CCParticleSystemQuad-ck.js",
+      "outputAbbreviatedPath" : "\/cocos2d\/base_nodes\/CCAtlasNode-ck.js",
       "fileType" : 64
     },
-    "\/cocos2d\/platform\/CCConfig.js" : {
+    "\/cocos2d\/platform\/AppControl.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/platform\/CCConfig.js",
+      "inputAbbreviatedPath" : "\/cocos2d\/platform\/AppControl.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/platform\/CCConfig-ck.js",
+      "outputAbbreviatedPath" : "\/cocos2d\/platform\/AppControl-ck.js",
       "fileType" : 64
     },
     "\/cocos2d\/platform\/CCEGLView.js" : {
@@ -719,17 +719,6 @@
       "outputAbbreviatedPath" : "\/cocos2d\/platform\/CCEGLView-ck.js",
       "fileType" : 64
     },
-    "\/res\/Asteroid\/Large.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/res\/Asteroid\/Large.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/res\/Asteroid\/Large.png",
-      "initialSize" : 2972,
-      "fileType" : 8192
-    },
     "\/cocos2d\/platform\/Sys.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
@@ -739,6 +728,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/cocos2d\/platform\/Sys-ck.js",
+      "fileType" : 64
+    },
+    "\/cocos2d\/platform\/CCConfig.js" : {
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/cocos2d\/platform\/CCConfig.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/cocos2d\/platform\/CCConfig-ck.js",
       "fileType" : 64
     },
     "\/res\/Title\/AsDirector.png" : {
@@ -763,17 +763,6 @@
       "outputAbbreviatedPath" : "\/cocos2d\/actions\/CCActionManager-ck.js",
       "fileType" : 64
     },
-    "\/cocos2d\/menu_nodes\/CCMenu.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/menu_nodes\/CCMenu.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/menu_nodes\/CCMenu-ck.js",
-      "fileType" : 64
-    },
     "\/cocos2d\/CCDrawingPrimitives.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
@@ -794,6 +783,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/cocos2d\/sprite_nodes\/CCSpriteFrameCache-ck.js",
+      "fileType" : 64
+    },
+    "\/cocos2d\/actions\/CCActionCamera.js" : {
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/cocos2d\/actions\/CCActionCamera.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/cocos2d\/actions\/CCActionCamera-ck.js",
       "fileType" : 64
     },
     "\/cocos2d\/layers_scenes_transitions_nodes\/CCScene.js" : {
@@ -818,38 +818,27 @@
       "outputAbbreviatedPath" : "\/cocos2d\/platform\/ZipUtils-ck.js",
       "fileType" : 64
     },
-    "\/cocos2d\/actions\/CCActionCamera.js" : {
+    "\/cocos2d\/particle_nodes\/CCParticleSystemQuad.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/actions\/CCActionCamera.js",
+      "inputAbbreviatedPath" : "\/cocos2d\/particle_nodes\/CCParticleSystemQuad.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/actions\/CCActionCamera-ck.js",
+      "outputAbbreviatedPath" : "\/cocos2d\/particle_nodes\/CCParticleSystemQuad-ck.js",
       "fileType" : 64
     },
-    "\/cocos2d\/base_nodes\/CCAtlasNode.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
+    "\/res\/Asteroid\/Large.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/base_nodes\/CCAtlasNode.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/base_nodes\/CCAtlasNode-ck.js",
-      "fileType" : 64
-    },
-    "\/cocos2d\/platform\/AppControl.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/platform\/AppControl.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/platform\/AppControl-ck.js",
-      "fileType" : 64
+      "inputAbbreviatedPath" : "\/res\/Asteroid\/Large.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/res\/Asteroid\/Large.png",
+      "initialSize" : 2972,
+      "fileType" : 8192
     },
     "\/cocos2d\/cocoa\/CCGeometry.js" : {
       "ignoreWasSetByUser" : 1,
@@ -860,6 +849,28 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/cocos2d\/cocoa\/CCGeometry-ck.js",
+      "fileType" : 64
+    },
+    "\/cocos2d\/menu_nodes\/CCMenu.js" : {
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/cocos2d\/menu_nodes\/CCMenu.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/cocos2d\/menu_nodes\/CCMenu-ck.js",
+      "fileType" : 64
+    },
+    "\/cocos2d\/actions\/CCActionCatmullRom.js" : {
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/cocos2d\/actions\/CCActionCatmullRom.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/cocos2d\/actions\/CCActionCatmullRom-ck.js",
       "fileType" : 64
     },
     "\/cocos2d\/label_nodes\/CCLabelBMFont.js" : {
@@ -873,17 +884,6 @@
       "outputAbbreviatedPath" : "\/cocos2d\/label_nodes\/CCLabelBMFont-ck.js",
       "fileType" : 64
     },
-    "\/cocos2d\/textures\/CCTextureAtlas.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/textures\/CCTextureAtlas.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/textures\/CCTextureAtlas-ck.js",
-      "fileType" : 64
-    },
     "\/cocos2d\/platform\/miniFramework.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
@@ -895,15 +895,15 @@
       "outputAbbreviatedPath" : "\/cocos2d\/platform\/miniFramework-ck.js",
       "fileType" : 64
     },
-    "\/cocos2d\/actions\/CCActionCatmullRom.js" : {
+    "\/cocos2d\/textures\/CCTextureAtlas.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/actions\/CCActionCatmullRom.js",
+      "inputAbbreviatedPath" : "\/cocos2d\/textures\/CCTextureAtlas.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/actions\/CCActionCatmullRom-ck.js",
+      "outputAbbreviatedPath" : "\/cocos2d\/textures\/CCTextureAtlas-ck.js",
       "fileType" : 64
     },
     "\/cocos2d\/kazmath\/utility.js" : {
@@ -1006,17 +1006,6 @@
       "outputAbbreviatedPath" : "\/cocos2d\/actions\/CCActionGrid3D-ck.js",
       "fileType" : 64
     },
-    "\/cocos2d.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d-ck.js",
-      "fileType" : 64
-    },
     "\/cocos2d\/misc_nodes\/CCRenderTexture.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
@@ -1026,6 +1015,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/cocos2d\/misc_nodes\/CCRenderTexture-ck.js",
+      "fileType" : 64
+    },
+    "\/cocos2d.js" : {
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/cocos2d.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/cocos2d-ck.js",
       "fileType" : 64
     },
     "\/CocosDenshion\/SimpleAudioEngine.js" : {
@@ -1072,6 +1072,17 @@
       "outputAbbreviatedPath" : "\/cocos2d\/touch_dispatcher\/CCMouseDispatcher-ck.js",
       "fileType" : 64
     },
+    "\/cocos2d\/CCConfiguration.js" : {
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/cocos2d\/CCConfiguration.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/cocos2d\/CCConfiguration-ck.js",
+      "fileType" : 64
+    },
     "\/cocos2d\/shaders\/ccShaderCache.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
@@ -1105,15 +1116,15 @@
       "outputAbbreviatedPath" : "\/cocos2d\/text_input_node\/CCIMEDispatcher-ck.js",
       "fileType" : 64
     },
-    "\/cocos2d\/CCConfiguration.js" : {
+    "\/src\/resource.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/CCConfiguration.js",
+      "inputAbbreviatedPath" : "\/src\/resource.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/CCConfiguration-ck.js",
+      "outputAbbreviatedPath" : "\/src\/resource-ck.js",
       "fileType" : 64
     },
     "\/cocos2d\/sprite_nodes\/CCSprite.js" : {
@@ -1125,17 +1136,6 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/cocos2d\/sprite_nodes\/CCSprite-ck.js",
-      "fileType" : 64
-    },
-    "\/src\/resource.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/src\/resource.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/src\/resource-ck.js",
       "fileType" : 64
     },
     "\/cocos2d\/kazmath\/mat4.js" : {
@@ -1204,17 +1204,6 @@
       "initialSize" : 1474,
       "fileType" : 8192
     },
-    "\/src\/screens\/game_over_screen.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/src\/screens\/game_over_screen.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/src\/screens\/game_over_screen-ck.js",
-      "fileType" : 64
-    },
     "\/res\/Title\/AsCat.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -1225,6 +1214,17 @@
       "outputAbbreviatedPath" : "\/res\/Title\/AsCat.png",
       "initialSize" : 4009,
       "fileType" : 8192
+    },
+    "\/src\/screens\/game_over_screen.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/src\/screens\/game_over_screen.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/src\/screens\/game_over_screen-ck.js",
+      "fileType" : 64
     },
     "\/cocos2d\/actions\/CCActionProgressTimer.js" : {
       "ignoreWasSetByUser" : 1,
@@ -1600,17 +1600,6 @@
       "outputAbbreviatedPath" : "\/cocos2d\/support\/CCTGAlib-ck.js",
       "fileType" : 64
     },
-    "\/cocos2d\/kazmath\/quaternion.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/cocos2d\/kazmath\/quaternion.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/cocos2d\/kazmath\/quaternion-ck.js",
-      "fileType" : 64
-    },
     "\/cocos2d\/cocoa\/CCAffineTransform.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
@@ -1631,6 +1620,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/cocos2d\/layers_scenes_transitions_nodes\/CCTransitionProgress-ck.js",
+      "fileType" : 64
+    },
+    "\/cocos2d\/kazmath\/quaternion.js" : {
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/cocos2d\/kazmath\/quaternion.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/cocos2d\/kazmath\/quaternion-ck.js",
       "fileType" : 64
     },
     "\/cocos2d\/CCScheduler.js" : {

@@ -140,10 +140,10 @@ PlayerShip = cc.Sprite.extend
 
   handleTouchMove: (touchLocation) ->
     # Gross use of hardcoded width,height params.
-    angle = Math.atan2(touchLocation.x-300,touchLocation.y-300)
+    angle = Math.atan2(touchLocation.x-@_position.x,touchLocation.y-@_position.y)
 
     angle = angle * (180/Math.PI)
-    this._currentRotation = angle
+    this._currentRotation = angle + 90
 
   moveShip: () ->
     xChange = @_currentVelocity * Math.cos(@_currentRotation * Math.PI / 180)
