@@ -38,8 +38,6 @@ game.GameOver = cc.LayerColor.extend(
     ctg = cc.Sprite.create(s_Cats_To_Go)
     ctg.setPosition cc.p(winSize.width / 2, winSize.height / 2 + 150)
     @addChild ctg
-
-
 )
 game.GameOver.create = (won) ->
   sg = new game.GameOver()

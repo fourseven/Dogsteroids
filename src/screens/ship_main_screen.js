@@ -8,18 +8,27 @@
     _shipSprite: null,
     _bulletArray: [],
     _asteroidArray: [],
+    _score: 0,
     ctor: function() {
       this._super(new cc.Color4B(0, 0, 0, 255));
+      this._size = cc.Director.getInstance().getWinSize();
       this._shipSprite = new PlayerShip(this);
       this.setTouchEnabled(true);
       this.setKeyboardEnabled(true);
       this.setPosition(new cc.Point(0, 0));
       this._bulletArray = [];
       this._asteroidArray = [];
+      this._score = 0;
+      this._label = cc.LabelTTF.create("Score: " + this._score, "Arial", 16);
+      this._label.setPosition(new cc.p(this._size.width - 100, 10));
+      this.addChild(this._label);
       this.addChild(this._shipSprite);
       this._shipSprite.scheduleUpdate();
       this.schedule(this.update);
       return true;
+    },
+    updateScore: function() {
+      return this._label.setString("Score: " + this._score);
     },
     onEnter: function() {
       this._super();
@@ -35,12 +44,14 @@
       for (var i = 0; i < this._bulletArray.length; i++) {
         var bullet = this._bulletArray[i];
         var bulletRect = bullet.getBoundingBox();
-        if (cc.rectContainsRect(bulletRect, asteroidRect)) {
+        if (cc.rectContainsRect(asteroidRect, bulletRect)) {
             cc.log("collision!");
             cc.ArrayRemoveObject(this._bulletArray, bullet);
             bullet.removeFromParent();
             cc.ArrayRemoveObject(this._asteroidArray, asteroid);
             asteroid.removeFromParent();
+            this._score = this._score + 1;
+            this.updateScore();
         }
       }
       var scene;

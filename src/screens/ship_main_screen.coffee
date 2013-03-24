@@ -4,19 +4,29 @@ game.ShipMainScreen = cc.LayerColor.extend
   _shipSprite: null
   _bulletArray: []
   _asteroidArray: []
+  _score: 0
   ctor: ->
     @_super new cc.Color4B(0, 0, 0, 255)
+    @_size = cc.Director.getInstance().getWinSize()
+
     @_shipSprite = new PlayerShip(this)
     @setTouchEnabled true
     @setKeyboardEnabled true
     @setPosition new cc.Point(0, 0)
     @_bulletArray   = []
     @_asteroidArray = []
+    @_score = 0
+    @_label = cc.LabelTTF.create("Score: #{@_score}", "Arial", 16)
+    @_label.setPosition new cc.p(@_size.width - 100, 10)
+    @addChild @_label
     @addChild @_shipSprite
     @_shipSprite.scheduleUpdate()
     @schedule @update
 
     true
+
+  updateScore: () ->
+    @_label.setString("Score: #{@_score}")
 
   onEnter: ->
     @_super()
@@ -32,12 +42,14 @@ game.ShipMainScreen = cc.LayerColor.extend
       for (var i = 0; i < this._bulletArray.length; i++) {
         var bullet = this._bulletArray[i];
         var bulletRect = bullet.getBoundingBox();
-        if (cc.rectContainsRect(bulletRect, asteroidRect)) {
+        if (cc.rectContainsRect(asteroidRect, bulletRect)) {
             cc.log("collision!");
             cc.ArrayRemoveObject(this._bulletArray, bullet);
             bullet.removeFromParent();
             cc.ArrayRemoveObject(this._asteroidArray, asteroid);
             asteroid.removeFromParent();
+            this._score = this._score + 1;
+            this.updateScore();
         }
       }
       var scene;
