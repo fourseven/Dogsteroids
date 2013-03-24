@@ -5,15 +5,12 @@
   game.ShipMainScreen = cc.LayerColor.extend({
     _shipSprite: null,
     ctor: function() {
-      var size;
       this._super(new cc.Color4B(0, 0, 0, 255));
-      size = cc.Director.getInstance().getWinSize();
       this._shipSprite = new PlayerShip();
       this.setTouchEnabled(true);
       this.setKeyboardEnabled(true);
       this.setPosition(new cc.Point(0, 0));
       this.addChild(this._shipSprite);
-      this._shipSprite.setPosition(new cc.Point(size.width / 2, size.height / 2));
       this._shipSprite.scheduleUpdate();
       this.schedule(this.update);
       return true;
@@ -40,20 +37,40 @@
   });
 
   PlayerShip = cc.Sprite.extend({
-    ROTATION_VECTOR: 10,
-    _currentRotation: 0,
+    ROTATION_VECTOR: 15,
+    MOVEMENT_VECTOR: 0,
+    _currentRotation: 90,
+    _position: null,
+    _size: null,
     ctor: function() {
       this._super();
-      return this.initWithFile(s_Ship_Stationary);
+      this.initWithFile(s_Ship_Stationary);
+      this._size = cc.Director.getInstance().getWinSize();
+      this._position = new cc.Point(this._size.width / 2, this._size.height / 2);
+      return this.setPosition(this._position);
     },
     update: function(dt) {
-      return this.setRotation(this._currentRotation);
+      this.setRotation(this._currentRotation - 90);
+      return this.moveShip();
     },
     handleKey: function(e) {
       if (e === cc.KEY.left) {
         this._currentRotation = this._currentRotation - this.ROTATION_VECTOR;
-      } else if (e === cc.KEY.right) {
+      }
+      if (e === cc.KEY.right) {
         this._currentRotation = this._currentRotation + this.ROTATION_VECTOR;
+      }
+      if (e === cc.KEY.up) {
+        this.MOVEMENT_VECTOR += 1;
+      }
+      if (e === cc.KEY.down) {
+        this.MOVEMENT_VECTOR -= 1;
+      }
+      if (this.MOVEMENT_VECTOR > 10) {
+        this.MOVEMENT_VECTOR = 10;
+      }
+      if (this.MOVEMENT_VECTOR < -10) {
+        this.MOVEMENT_VECTOR = -10;
       }
       if (this._currentRotation < 0) {
         this._currentRotation = 360;
@@ -68,8 +85,34 @@
       angle = angle * (180 / Math.PI);
       return this._currentRotation = angle;
     },
-    myUpdate: function(dt) {
-      return this._radians -= 6;
+    moveShip: function() {
+      var xChange, yChange;
+      xChange = this.MOVEMENT_VECTOR * Math.cos(this._currentRotation * Math.PI / 180);
+      yChange = this.MOVEMENT_VECTOR * Math.sin(this._currentRotation * Math.PI / 180);
+      this._position.x -= xChange;
+      this._position.y += yChange;
+      this.sanitizeX();
+      this.sanitizeY();
+    },
+    sanitizeX: function() {
+      var maxX;
+      maxX = this._size.width + this.getBoundingBox().width / 2;
+      if (this._position.x > maxX) {
+        this._position.x = this._position.x % maxX;
+      }
+      if (this._position.x < -this.getBoundingBox().width / 2) {
+        return this._position.x = maxX;
+      }
+    },
+    sanitizeY: function() {
+      var maxY;
+      maxY = this._size.height + this.getBoundingBox().height / 2;
+      if (this._position.y > maxY) {
+        this._position.y = this._position.y % maxY;
+      }
+      if (this._position.y < -this.getBoundingBox().height / 2) {
+        return this._position.y = maxY;
+      }
     }
   });
 
