@@ -30,7 +30,7 @@
         COCOS2D_DEBUG:2, //0 to turn debug off, 1 for basic debug, and 2 for full debug
         box2d:true,
         chipmunk:false,
-        showFPS:true,
+        showFPS:false,
         frameRate:60,
         loadExtension:false,
         tag:'gameCanvas', //the dom element to run cocos2d on
@@ -39,8 +39,9 @@
         appFiles:[
             'src/resource.js',
             'src/myApp.js',
-            'src/screens/intro_screen.js',
-            'src/screens/ship_main_screen.js'
+            'src/screens/game_over_screen.js',
+            'src/screens/ship_main_screen.js',
+            'src/screens/intro_screen.js'
             //add your own files in order here
         ]
     };

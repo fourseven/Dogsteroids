@@ -1,3 +1,5 @@
+window.game = window.game || {}
+
 game.ShipMainScreen = cc.LayerColor.extend
   _shipSprite: null
   _bulletArray: []
@@ -8,9 +10,12 @@ game.ShipMainScreen = cc.LayerColor.extend
     @setTouchEnabled true
     @setKeyboardEnabled true
     @setPosition new cc.Point(0, 0)
+    @_bulletArray   = []
+    @_asteroidArray = []
     @addChild @_shipSprite
     @_shipSprite.scheduleUpdate()
     @schedule @update
+
     true
 
   onEnter: ->
@@ -21,6 +26,30 @@ game.ShipMainScreen = cc.LayerColor.extend
     @addAsteroid()
 
   update: (dt) ->
+    `for (var j = 0; j < this._asteroidArray.length; j++) {
+      var asteroid = this._asteroidArray[j];
+      var asteroidRect = asteroid.getBoundingBox();
+      for (var i = 0; i < this._bulletArray.length; i++) {
+        var bullet = this._bulletArray[i];
+        var bulletRect = bullet.getBoundingBox();
+        if (cc.rectContainsRect(asteroidRect, bulletRect)) {
+            cc.log("collision!");
+            cc.ArrayRemoveObject(this._bulletArray, bullet);
+            bullet.removeFromParent();
+            cc.ArrayRemoveObject(this._asteroidArray, asteroid);
+            asteroid.removeFromParent();
+        }
+      }
+      var scene;
+
+      if (cc.rectContainsRect(asteroidRect, this._shipSprite.getBoundingBox())) {
+        this._asteroidArray = [];
+        this._bulletArray = [];
+        scene = game.GameOver.scene(false);
+        cc.Director.getInstance().replaceScene(scene);
+      }
+    }`
+    return
 
   onTouchesEnded: (pTouch, pEvent) ->
 
@@ -40,6 +69,7 @@ game.ShipMainScreen = cc.LayerColor.extend
   fireBullet: (position, currentRotation) ->
     bullet = new PlayerShipBullet(@_shipSprite.getPosition(), @_shipSprite.getCurrentRotation())
     @addChild bullet
+    @_bulletArray.push bullet
     bullet.runAction bullet.actionMove(), () ->
       cc.CallFunc.create((node) ->
         cc.ArrayRemoveObject(@_bulletArray, node)
@@ -87,7 +117,6 @@ PlayerShip = cc.Sprite.extend
     if (e == cc.KEY.down)
       @_currentVelocity -= 1
     if (e == cc.KEY.space)
-      console.log("Space was pressed")
       @_scene.fireBullet()
 
 
