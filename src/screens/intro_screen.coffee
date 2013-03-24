@@ -60,7 +60,7 @@ game.IntroScreen = cc.Layer.extend
     lazyLayer = new cc.LazyLayer()
     @addChild lazyLayer, 2
 
-    label = cc.LabelTTF.create("Created by @four_seven, Art direction by @merxplat © 2013", "Arial", 18)
+    label = cc.LabelTTF.create("Created by @four_seven, Art direction by @merxplat © 2013", "Arial", 20)
     label.setColor cc.c4b(255, 255, 255, 100)
     label.setPosition size.width / 2, 20
     @addChild label

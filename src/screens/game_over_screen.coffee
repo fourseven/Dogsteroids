@@ -11,24 +11,40 @@ game.GameOver = cc.LayerColor.extend(
     director = cc.Director.getInstance()
     winSize = director.getWinSize()
     centerPos = cc.p(winSize.width / 2, winSize.height / 2)
-    message = undefined
+
+    @backgroundSprite = cc.Sprite.create(s_Splash)
+    @backgroundSprite.setPosition cc.p(winSize.width / 2, winSize.height / 2)
+    @backgroundSprite.setScale 0.5
+    @addChild @backgroundSprite
+    sprite = undefined
+
     if @_won
-      message = "You Won!"
+      sprite = cc.Sprite.create(s_Win_Screen)
+      sprite.setPosition cc.p(winSize.width / 2, winSize.height / 2)
     else
-      message = "You Lose :["
-    label = cc.LabelTTF.create(message, "Arial", 32)
-    label.setColor cc.c3b(0, 0, 0)
-    label.setPosition winSize.width / 2, winSize.height / 2
-    @addChild label
+      sprite = cc.Sprite.create(s_Lose_Screen)
+      sprite.setPosition cc.p(winSize.width / 2, winSize.height / 2 - 150)
+      @addCatsToGo(winSize)
+
+    sprite.setScale 0.5
+    sprite.setPosition centerPos
+    @addChild sprite
     @runAction cc.Sequence.create(cc.DelayTime.create(3), cc.CallFunc.create((node) ->
       scene = new game.IntroScreenScene()
       cc.Director.getInstance().replaceScene scene
     , this))
+
+  addCatsToGo: (winSize) ->
+    ctg = cc.Sprite.create(s_Cats_To_Go)
+    ctg.setPosition cc.p(winSize.width / 2, winSize.height / 2 + 150)
+    @addChild ctg
+
+
 )
 game.GameOver.create = (won) ->
   sg = new game.GameOver()
   sg._won = won
-  return sg  if sg and sg.init(cc.c4b(255, 255, 255, 255))
+  return sg  if sg and sg.init(cc.c4b(0, 0, 0, 255))
   null
 
 game.GameOver.scene = (won = true) ->

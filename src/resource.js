@@ -8,6 +8,9 @@ var s_Ship_Bullet = "res/Ship/Bullet.png";
 var s_Asteroid_Large = "res/Asteroid/Large.png";
 var s_Asteroid_Medium = "res/Asteroid/Medium.png";
 var s_Asteroid_Small = "res/Asteroid/Small.png";
+var s_Win_Screen = "res/win-screen.png";
+var s_Lose_Screen = "res/lose-screen.png";
+var s_Cats_To_Go = "res/cats-to-go.png";
 
 var g_ressources = [
     //image
@@ -20,7 +23,10 @@ var g_ressources = [
     {type:"image", src:s_Ship_Bullet},
     {type:"image", src:s_Asteroid_Large},
     {type:"image", src:s_Asteroid_Medium},
-    {type:"image", src:s_Asteroid_Small}
+    {type:"image", src:s_Asteroid_Small},
+    {type:"image", src:s_Win_Screen},
+    {type:"image", src:s_Lose_Screen},
+    {type:"image", src:s_Cats_To_Go}
 
     //plist
 
